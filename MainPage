@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PhotoApp"
+             x:Class="PhotoApp.MainPage">
+
+    <ContentPage.BindingContext>
+        <local:ImageEditorViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid RowDefinitions="*, Auto, Auto" Padding="20">
+
+        <Image Source="{Binding DisplayImage}" 
+               Aspect="AspectFit" 
+               Grid.Row="0" 
+               Margin="0,0,0,20"/>
+
+        <HorizontalStackLayout Grid.Row="1" 
+                               Spacing="15" 
+                               HorizontalOptions="Center"
+                               Margin="0,0,0,15">
+            <Button Text="Wczytaj zdjęcie" WidthRequest="150" Command="{Binding PickImageCommand}" />
+            <Button Text="Zapisz zdjęcie" WidthRequest="150" Command="{Binding SaveImageCommand}" />
+        </HorizontalStackLayout>
+
+        <Picker Grid.Row="2" 
+                ItemsSource="{Binding AvailableFilters}"
+                SelectedItem="{Binding SelectedFilter}"
+                Title="Wybierz filtr z listy..." 
+                HorizontalOptions="Center" 
+                WidthRequest="315" />
+
+    </Grid>
+</ContentPage>
